@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://ipcamview.pawlidi.de/"
+            targetNamespace="http://ipcamview.pawlidi.de/" elementFormDefault="qualified">
+
+<xsd:element name="CameraInfo" type="CameraInfo"/>
+
+<xsd:complexType name="CameraInfo">
+    <xsd:sequence>
+        <xsd:element name="model" type="xsd:string" minOccurs="1"/>
+        <xsd:element name="manufacturer" type="xsd:string" minOccurs="1"/>
+        <xsd:element name="type" type="xsd:string" minOccurs="1"/>
+        <xsd:element name="protocol" type="xsd:string" minOccurs="1"/>
+        <xsd:element name="path" type="xsd:string" minOccurs="1"/>
+    </xsd:sequence>
+</xsd:complexType>
+
+
+</xsd:schema>
