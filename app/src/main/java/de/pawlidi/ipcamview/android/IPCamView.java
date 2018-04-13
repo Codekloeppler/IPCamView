@@ -8,10 +8,9 @@ import com.raizlabs.android.dbflow.config.FlowManager;
 import de.pawlidi.ipcamview.android.utils.Log;
 
 /**
+ * Main application class for intialization.
  *
- *
- *
- *
+ * @pawlidim
  */
 public class IPCamView extends Application {
 
@@ -29,10 +28,19 @@ public class IPCamView extends Application {
         Log.info("Components initialized....");
     }
 
+    /**
+     * Return current application component.
+     *
+     * @return component, to get
+     */
     public AppComponent getComponent() {
         return component;
     }
 
+    /**
+     * For internal test use only
+     * @param component
+     */
     @VisibleForTesting
     public void setComponent(AppComponent component) {
         this.component = component;
