@@ -2,4 +2,20 @@
 <resources>
     <string name="app_name">IPCamView</string>
     <string name="action_settings">Настройки</string>
+    <string name="message.delete">Удалить</string>
+    <string name="message.start">Старт</string>
+    <string name="title_activity_story">StoryActivity</string>
+    <string name="message.permission_camera">Разрешить пользоваться камерой</string>
+    <string name="message.ok">Окей</string>
+    <string name="message.cancel">Отменить</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="navigation_drawer_close">Открыть</string>
+    <string name="navigation_drawer_open">Закрыть</string>
+    <string name="message.share">Поделиться</string>
+    <string name="message.send">Оценивать</string>
+    <string name="message.credits">Credits</string>
+    <string name="message.others">Другое</string>
+    <string name="message.chapter">Глава</string>
+    <string name="message.credits.flaticon">Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a>  from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>  is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">     CC 3.0 BY</a></string>
+
 </resources>

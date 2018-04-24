@@ -1,4 +1,20 @@
 <resources>
     <string name="app_name">IPCamView</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_story">StoryActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="message.delete">Delete</string>
+    <string name="message.start">Start</string>
+    <string name="message.permission_camera">Allow camera permission</string>
+    <string name="message.ok">Ok</string>
+    <string name="message.cancel">Cancel</string>
+
+    <string name="navigation_drawer_open">Open navigation</string>
+    <string name="navigation_drawer_close">Close navigation</string>
+    <string name="message.share">Share</string>
+    <string name="message.send">Rate</string>
+    <string name="message.others">Others</string>
+    <string name="message.credits">Credits</string>
+    <string name="message.chapter">Chapter</string>
+    <string name="message.credits.flaticon">Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a>  from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>  is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">     CC 3.0 BY</a></string>
 </resources>

@@ -78,7 +78,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Validato
                 }
                 break;
             default:
-                Log.error("Illegal switch case patŕameter!!!!");
+                Log.error("Illegal switch case paraameter!!!!");
             break;
         }
     }

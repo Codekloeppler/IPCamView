@@ -2,6 +2,7 @@ package de.pawlidi.ipcamview.android;
 
 import android.content.Context;
 
+import com.path.android.jobqueue.JobManager;
 import com.raizlabs.android.dbflow.config.DatabaseDefinition;
 
 import org.greenrobot.eventbus.EventBus;
@@ -27,6 +28,8 @@ public interface AppComponent {
     Context appContext();
 
     EventBus eventBus();
+
+    JobManager jobManager();
 
     void inject(Model model);
 }

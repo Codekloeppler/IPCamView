@@ -1,11 +1,13 @@
 package de.pawlidi.ipcamview.android.activity;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -24,7 +26,12 @@ import de.pawlidi.ipcamview.android.model.Model;
 import de.pawlidi.ipcamview.android.utils.Log;
 import de.pawlidi.ipcamview.android.utils.ViewUtils;
 
-public class MainActivity extends BaseActivity {
+/**
+ * Main activity for the IPCamView
+ *
+ * @author pawlidim
+ */
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @Inject
     Model model;
@@ -43,8 +50,16 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         getComponent().inject(this);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
+        rootView = (DrawerLayout) findViewById(R.id.rootView);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, rootView, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        rootView.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        requestAppPermissions(rootView);
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +69,9 @@ public class MainActivity extends BaseActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        Log.info("Call on start main activity try to register this as even observer");
+        eventBus.register(this);
     }
 
     @Override
@@ -62,29 +80,6 @@ public class MainActivity extends BaseActivity {
         eventBus.unregister(this);
         jobManager.stop();
         super.onDestroy();
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -104,6 +99,47 @@ public class MainActivity extends BaseActivity {
             } else {
                 ViewUtils.createToast(this, message);
             }
+        }
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        Log.info("Handle navigation view item clicks....");
+        int id = item.getItemId();
+        if (id == R.id.nav_settings) {
+            Log.info("Try to open dialog for settings");
+        } else if (id == R.id.nav_share) {
+            Dialog dialog = createDialog(R.layout.share_dialog, R.string.message_share);
+            dialog.show();
+            Log.info("Try to open dialog for share");
+        } else if (id == R.id.nav_send) {
+            showRateDialog();
+            Log.info("Try to open dialog for rate");
+        } else if (id == R.id.nav_credits) {
+            Dialog dialog = createDialog(R.layout.send_dialog, R.string.message_credits);
+            dialog.show();
+            Log.info("Try to open dialog for credits");
+        }
+
+        rootView.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    private Dialog createDialog(int dialogId, int titleId) {
+        Dialog dialog = new Dialog(MainActivity.this);
+        dialog.setContentView(dialogId);
+        dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.setTitle(getString(titleId));
+        return dialog;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (rootView.isDrawerOpen(GravityCompat.START)) {
+            rootView.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
         }
     }
 }
