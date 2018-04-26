@@ -1,4 +1,4 @@
-package de.pawlidi.ipcamview.android.activity;
+package de.pawlidi.ipcamview.android.model.db;
 
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.NotNull;
